@@ -34,7 +34,12 @@ var att_config = {
     second: 59,
     // Timezone offset
     zone: 'UTC-4',
-  }
+
+  },
+
+  // Set to true to close lightbox when the area outside the lightbox is clicked.
+  clickBackgroundToClose: false
+
   // =========================== END USER DEFINED CONFIGURATION ===========================
 };
 
@@ -73,6 +78,13 @@ var handlers = function handlers() {
   document.getElementById('att_lightbox_close').addEventListener('click', function (e) {
     e.preventDefault();
     hide();
+  });
+
+  document.querySelector('.att_lightbox_background').addEventListener('click', function (e) {
+    if (att_config.clickBackgroundToClose) {
+      e.preventDefault();
+      hide();
+    }
   });
 
   function show() {
